@@ -7,10 +7,11 @@ namespace :bibliaonline do
 
   	crawler = Crawler.new
 
-  	livros = crawler.get_livros url, css_path, html_field
+  	livros = crawler.get_books url, css_path, html_field
 
   	livros.each do |livro|
-  		puts livro
+      puts livro
+  		Book.find_or_create_by_name_and_link(livro[0],livro[1])
   	end
 
   end

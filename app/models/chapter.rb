@@ -8,8 +8,8 @@ class Chapter < ActiveRecord::Base
 
   def as_json(options = {})
     {
-      :name => self.name,
-      :link => self.link,
+      :number => self.number,
+      :link => self.link
     }
   end
   

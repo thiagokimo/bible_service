@@ -1,10 +1,9 @@
 BibleService::Application.routes.draw do
-  resources :verses
-
-  resources :chapters
 
   resources :books do
-    resources :chapters
+    resources :chapters do
+      resources :verses
+    end
   end
 
   # The priority is based upon order of creation:

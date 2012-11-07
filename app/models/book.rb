@@ -10,7 +10,7 @@ class Book < ActiveRecord::Base
   def as_json(options = {})
     {
       :name => self.name,
-      :link => self.link,
+      :link => self.link
     }
   end
 

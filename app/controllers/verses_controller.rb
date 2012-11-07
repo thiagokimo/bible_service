@@ -1,4 +1,7 @@
 class VersesController < ApplicationController
+
+  before_filter :load_book_and_chapter
+
   # GET /verses
   # GET /verses.json
   def index
@@ -21,63 +24,10 @@ class VersesController < ApplicationController
     end
   end
 
-  # GET /verses/new
-  # GET /verses/new.json
-  def new
-    @verse = Verse.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @verse }
-    end
+  protected
+  def load_book_and_chapter
+    @book = Book.find(params[:manga_id])
+    @chapter = @book.chapters.find(params[:chapter_id])
   end
 
-  # GET /verses/1/edit
-  def edit
-    @verse = Verse.find(params[:id])
-  end
-
-  # POST /verses
-  # POST /verses.json
-  def create
-    @verse = Verse.new(params[:verse])
-
-    respond_to do |format|
-      if @verse.save
-        format.html { redirect_to @verse, notice: 'Verse was successfully created.' }
-        format.json { render json: @verse, status: :created, location: @verse }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @verse.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /verses/1
-  # PUT /verses/1.json
-  def update
-    @verse = Verse.find(params[:id])
-
-    respond_to do |format|
-      if @verse.update_attributes(params[:verse])
-        format.html { redirect_to @verse, notice: 'Verse was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @verse.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /verses/1
-  # DELETE /verses/1.json
-  def destroy
-    @verse = Verse.find(params[:id])
-    @verse.destroy
-
-    respond_to do |format|
-      format.html { redirect_to verses_url }
-      format.json { head :no_content }
-    end
-  end
 end

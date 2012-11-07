@@ -29,6 +29,7 @@ namespace :bibliaonline do
       capitulos = crawler.get_chapters livro.link, css_path, :href
 
       capitulos.each do |capitulo|
+        puts capitulo[0]
         livro.chapters.find_or_create_by_number_and_link(capitulo[0].to_i, capitulo[1])  
       end
     end
@@ -44,7 +45,10 @@ namespace :bibliaonline do
     capitulos.each do |capitulo|
       versiculos = crawler.get_verses capitulo.link, css_path, :verse
 
-      puts versiculos
+      versiculos.each do |versiculo|
+        puts versiculo[0]
+        capitulo.verses.find_or_create_by_content_and_number(versiculo[0], versiculo[1])
+      end
     end
 
   end

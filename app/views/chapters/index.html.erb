@@ -4,7 +4,6 @@
   <tr>
     <th>Number</th>
     <th>Link</th>
-    <th>Book</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,7 +13,6 @@
   <tr>
     <td><%= chapter.number %></td>
     <td><%= chapter.link %></td>
-    <td><%= chapter.book %></td>
     <td><%= link_to 'Show', chapter %></td>
     <td><%= link_to 'Edit', edit_chapter_path(chapter) %></td>
     <td><%= link_to 'Destroy', chapter, method: :delete, data: { confirm: 'Are you sure?' } %></td>

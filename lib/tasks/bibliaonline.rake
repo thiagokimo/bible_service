@@ -1,19 +1,34 @@
 namespace :bibliaonline do
-  desc "Coleta grava no banco os livros coletados"
+  desc "Coleta e grava no banco os livros coletados"
   task :pega_livros => :environment do
   	url = "http://www.bibliaonline.com.br/nvi/"
   	css_path = "#footer a"
-  	html_field = :href
 
   	crawler = Crawler.new
 
-  	livros = crawler.get_books url, css_path, html_field
+  	livros = crawler.get_books url, css_path, :href
 
   	livros.each do |livro|
       puts livro
   		Book.find_or_create_by_name_and_link(livro[0],livro[1])
   	end
 
+  end
+
+  desc "Coleta e grava no banco os capitulos dos livros"
+  task :pega_capitulos => :environment do
+    livros = Book.all
+
+    crawler = Crawler.new
+
+    livros.each do |livro|
+      
+      css_path = ".chapter_index a"
+      capitulos = crawler.get_chapters livro.link, css_path, :href
+
+      puts capitulos
+
+    end
   end
 
 end

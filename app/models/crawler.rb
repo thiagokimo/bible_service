@@ -15,7 +15,14 @@ class Crawler
 			result.push([anchor.content, anchor[html_field]])
 		end
 
-		return result
+		result
+	end
+
+	def get_chapters book_link, css_path, html_field
+
+		#usa a mesma lógica do get_books
+		get_books book_link, css_path, html_field
+		
 	end
 
 end

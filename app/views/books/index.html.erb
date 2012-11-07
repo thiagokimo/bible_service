@@ -5,21 +5,15 @@
     <th>Name</th>
     <th>Link</th>
     <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @books.each do |book| %>
   <tr>
     <td><%= book.name %></td>
     <td><%= book.link %></td>
-    <td><%= link_to 'Show', book %></td>
-    <td><%= link_to 'Edit', edit_book_path(book) %></td>
-    <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', book_chapters_path(book) %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Book', new_book_path %>

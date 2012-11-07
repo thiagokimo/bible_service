@@ -5,7 +5,7 @@ class VersesController < ApplicationController
   # GET /verses
   # GET /verses.json
   def index
-    @verses = Verse.all
+    @verses = @chapter.verses
 
     respond_to do |format|
       format.html # index.html.erb
@@ -26,7 +26,7 @@ class VersesController < ApplicationController
 
   protected
   def load_book_and_chapter
-    @book = Book.find(params[:manga_id])
+    @book = Book.find(params[:book_id])
     @chapter = @book.chapters.find(params[:chapter_id])
   end
 

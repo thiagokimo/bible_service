@@ -1,4 +1,6 @@
 BibleService::Application.routes.draw do
+  resources :verses
+
   resources :chapters
 
   resources :books do

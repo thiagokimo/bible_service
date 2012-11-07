@@ -19,10 +19,14 @@ class Crawler
 	end
 
 	def get_chapters book_link, css_path, html_field
-
 		#usa a mesma lógica do get_books
 		get_books book_link, css_path, html_field
 		
+	end
+
+	def get_verses chapter_link, css_path, html_field
+		#usa a mesma lógica do get_books
+		get_books chapter_link, css_path, html_field
 	end
 
 end

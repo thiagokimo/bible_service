@@ -1,0 +1,29 @@
+<%= form_for(@verse) do |f| %>
+  <% if @verse.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@verse.errors.count, "error") %> prohibited this verse from being saved:</h2>
+
+      <ul>
+      <% @verse.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :number %><br />
+    <%= f.number_field :number %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
+  </div>
+  <div class="field">
+    <%= f.label :chapter %><br />
+    <%= f.text_field :chapter %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

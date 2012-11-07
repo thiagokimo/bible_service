@@ -1,0 +1,27 @@
+<h1>Listing verses</h1>
+
+<table>
+  <tr>
+    <th>Number</th>
+    <th>Content</th>
+    <th>Chapter</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @verses.each do |verse| %>
+  <tr>
+    <td><%= verse.number %></td>
+    <td><%= verse.content %></td>
+    <td><%= verse.chapter %></td>
+    <td><%= link_to 'Show', verse %></td>
+    <td><%= link_to 'Edit', edit_verse_path(verse) %></td>
+    <td><%= link_to 'Destroy', verse, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Verse', new_verse_path %>

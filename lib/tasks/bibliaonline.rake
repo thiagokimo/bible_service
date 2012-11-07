@@ -31,7 +31,23 @@ namespace :bibliaonline do
       capitulos.each do |capitulo|
         livro.chapters.find_or_create_by_number_and_link(capitulo[0].to_i, capitulo[1])  
       end
-
     end
   end
+
+  desc "Coleta e grava no banco os versiculos coletados"
+  task :pega_versiculos => :environment do
+    capitulos = Chapter.all
+    css_path = ".verse"
+
+    crawler = Crawler.new
+
+    capitulos.each do |capitulo|
+      versiculos = crawler.get_verses capitulo.link, css_path, :verse
+
+      puts versiculos
+    end
+
+  end
+
+
 end

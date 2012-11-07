@@ -25,7 +25,7 @@ class ChaptersController < ApplicationController
 
 
   protected
-  def load_manga
+  def load_book
     @book = Book.find(params[:book_id])
   end
 end

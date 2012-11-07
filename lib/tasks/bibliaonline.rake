@@ -26,7 +26,10 @@ namespace :bibliaonline do
       css_path = ".chapter_index a"
       capitulos = crawler.get_chapters livro.link, css_path, :href
 
-      puts capitulos
+      capitulos.each do |capitulo|
+        puts capitulo[0]
+        livro.chapters.find_or_create_by_name_and_link capitulo[0].to_i, capitulo[1]  
+      end
 
     end
   end

@@ -1,5 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
+require 'zlib'
 
 class Crawler
 
@@ -7,7 +8,15 @@ class Crawler
 
 		result = Array.new
 
-		html_index = Nokogiri::HTML(open(index_link))
+		stream = open(index_link)
+
+		if (stream.content_encoding.empty?)
+  			body = stream.read
+		else
+  			body = Zlib::GzipReader.new(stream).read
+		end
+
+		html_index = Nokogiri::HTML(body)
 
 		links = html_index.css(css_path)
 		

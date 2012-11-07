@@ -9,7 +9,7 @@
 <% @chapters.each do |chapter| %>
   <tr>
     <td><%= chapter.number %></td>
-    <td><%= link_to 'Show', book_chapter_verses(chapter.book, chapter) %></td>
+    <td><%= link_to 'Show', book_chapter_verses_path(chapter.book, chapter) %></td>
   </tr>
 <% end %>
 </table>

@@ -48,8 +48,11 @@ respectively. The regular expressions to retrieve each entitie information corre
 
 ##Usage
 To get the information, access the URL's according to its entitie.
+Start the server with
 
-Examples:
+  > `rails s`<br>
+
+and try the following examples:
 
 * <b>All books:</b> - http://localhost:3000/books.json
 

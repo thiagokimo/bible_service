@@ -1,36 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Bible Service : A simple bible provider" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Bible Service by thiagokimo</title>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-    <title>Bible Service</title>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
-
   <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/thiagokimo/bible_service">View on GitHub</a>
-
-          <h1 id="project_title">Bible Service</h1>
-          <h2 id="project_tagline">A simple bible provider</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/thiagokimo/bible_service/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/thiagokimo/bible_service/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
+    <div class="wrapper">
+      <header>
+        <h1>Bible Service</h1>
+        <p>A simple bible provider</p>
+        <p class="view"><a href="https://github.com/thiagokimo/bible_service">View the Project on GitHub <small>thiagokimo/bible_service</small></a></p>
+        <ul>
+          <li><a href="https://github.com/thiagokimo/bible_service/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/thiagokimo/bible_service/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/thiagokimo/bible_service">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
         <h1>Bible Service</h1>
 
 <h1><img src="http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2011/2/11/1297427584196/Bible-007.jpg" alt="pictureGallery" title="bible"></h1>
@@ -104,7 +100,7 @@ respectively. The regular expressions to retrieve each entitie information corre
 <li><p><b>All books:</b> - http://localhost:3000/books.json</p></li>
 <li><p><b> All chapters from the book Exodus</b> - http://localhost:3000/books/2/chapters.json</p></li>
 <li><p><b>All verses from the first chapter of Genesis:</b> - http://localhost:3000/books/1/chapters/1/verses.json</p></li>
-</ul><h2>Future ideas and TODO's</h2>
+</ul><h2>Future ideas and "to do"s'</h2>
 
 <ol>
 <li>Create tasks to collect information from other bibles<br>
@@ -113,27 +109,44 @@ respectively. The regular expressions to retrieve each entitie information corre
 <li>Change from Rails to Sinatra because its lightier ;)</li>
 <li>Separate the crawler as a GEM, which will allow us to integrate our bible in other frameworks.</li>
 <li>Start writting the commit messages in English, LOL</li>
-</ol><h2>Contributing</h2>
+</ol><h2>How to contribute</h2>
 
-<ol>
-<li>Fork it</li>
-<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
-<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
-<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
-<li>Create new Pull Request</li>
-</ol>
+<p>Please ensure that you provide appropriate test coverage and ensure the documentation is up-to-date. It is encouraged that you perform changes in a clean topic branch rather than a master and that you create a pull request for them. This will facilitate discussion and revision.</p>
+
+<p>Please be clean, keep your commits atomic and with the smallest possible logical change. This will increase the likelihood of your submission to be used.</p>
+
+<h3>Bug reports</h3>
+
+<p>If you discover any bugs, feel free to create an issue on GitHub. Please add as much information as possible to help us fixing the possible bug.</p>
+
+<p><a href="https://github.com/thiagokimo/bible_service/issues">https://github.com/thiagokimo/bible_service/issues</a></p>
+
+<h2>License</h2>
+
+<p>Copyright (c) 2012 Thiago Moreira Rocha.</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to use, copy and modify copies of the Software, subject
+to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
       </section>
     </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Bible Service maintained by <a href="https://github.com/thiagokimo">thiagokimo</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
+    <footer>
+      <p>Project maintained by <a href="https://github.com/thiagokimo">thiagokimo</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
-
   </body>
 </html>

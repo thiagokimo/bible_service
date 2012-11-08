@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Bible Service : A simple bible provider" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Bible Service</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/thiagokimo/bible_service">View on GitHub</a>
+
+          <h1 id="project_title">Bible Service</h1>
+          <h2 id="project_tagline">A simple bible provider</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/thiagokimo/bible_service/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/thiagokimo/bible_service/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>Bible Service</h1>
+
+<h1><img src="http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2011/2/11/1297427584196/Bible-007.jpg" alt="pictureGallery" title="bible"></h1>
+
+<h1>Description</h1>
+
+<p>A RoR application that provides content from the bible. The content collected was the <b>Nova Versão Internacional</b> bible
+in brazilian portuguese. It was scrapped from <a></a><a href="http://www.bibliaonline.com.br/">http://www.bibliaonline.com.br/</a>.</p>
+
+<h2>Setup</h2>
+
+<p>Assuming that you have Ruby, Rails and MySQL properly installed and configured in your machine:</p>
+
+<ol>
+<li>
+<p><b>Clone this repository to your machine</b>:</p>
+
+<blockquote>
+<p><code>git clone https://github.com/thiagokimo/bible_service.git</code></p>
+</blockquote>
+</li>
+<li>
+<p><b>Inside the project directory</b>:</p>
+
+<blockquote>
+<p><code>bundle install</code></p>
+</blockquote>
+</li>
+<li>
+<p><b>Create and migrate the databases</b>:</p>
+
+<blockquote>
+<p><code>rake db:create</code><br><code>rake db:migrate</code></p>
+</blockquote>
+</li>
+<li>
+<p><b>Run the crawler tasks to populate the databases</b>:</p>
+
+<blockquote>
+<p><code>rake bibliaonline:pega_livros</code><br><code>rake bibliaonline:pega_capitulos</code><br><code>rake bibliaonline:pega_versiculos</code></p>
+</blockquote>
+</li>
+</ol><h2>How it works</h2>
+
+<p>There are 3 main entities:</p>
+
+<ul>
+<li>Book - Stores the book's name and link.</li>
+<li>Chapter - Stores the chapter's number and link.</li>
+<li>Verse - Stores the verses' number and its content.</li>
+</ul><p>The application has a crawler that populates the database parsing each html page, scrapping the content related to each
+entitie. All scrap processes were built as rake tasks and can be triggered anytime. More information in <code>lib/tasks/bibliaonline.rake</code></p>
+
+<p>The service exports the information as json by HTTP requests. All routes are nested as <i>Book</i>, <i>Chapter</i> and <i>Verse</i>
+respectively. The regular expressions to retrieve each entitie information corresponds to its own rake route:</p>
+
+<ul>
+<li>
+<b>Book:</b> - "/books"</li>
+<li>
+<b>Chapter:</b> - "books/<b><i>book_id</i></b>/chapters"</li>
+<li>
+<b>Verse:</b> - "books/<b><i>book_id</i></b>/chapters/<b><i>chapter_id</i></b>/verses"</li>
+</ul><h2>Usage</h2>
+
+<p>To get the information, access the URL's according to its entitie.</p>
+
+<p>Examples:</p>
+
+<ul>
+<li><p><b>All books:</b> - http://localhost:3000/books.json</p></li>
+<li><p><b> All chapters from the book Exodus</b> - http://localhost:3000/books/2/chapters.json</p></li>
+<li><p><b>All verses from the first chapter of Genesis:</b> - http://localhost:3000/books/1/chapters/1/verses.json</p></li>
+</ul><h2>Future ideas and TODO's</h2>
+
+<ol>
+<li>Create tasks to collect information from other bibles<br>
+</li>
+<li>BibliaOnline.com has no consistency data. Find another source that has!</li>
+<li>Change from Rails to Sinatra because its lightier ;)</li>
+<li>Separate the crawler as a GEM, which will allow us to integrate our bible in other frameworks.</li>
+<li>Start writting the commit messages in English, LOL</li>
+</ol><h2>Contributing</h2>
+
+<ol>
+<li>Fork it</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Bible Service maintained by <a href="https://github.com/thiagokimo">thiagokimo</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>

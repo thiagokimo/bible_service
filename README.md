@@ -48,7 +48,7 @@ respectively. The regular expressions to retrieve each entitie information corre
 
 ##Usage
 To get the information, access the URL's according to its entitie.
-Start the server with
+Inside the project's folder, start the server with
 
   > `rails s`<br>
 

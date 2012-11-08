@@ -65,15 +65,35 @@ Examples:
 4. Separate the crawler as a GEM, which will allow us to integrate our bible in other frameworks.
 5. Start writting the commit messages in English, LOL
 
-## Contributing
+##How to contribute
+Please ensure that you provide appropriate test coverage and ensure the documentation is up-to-date. It is encouraged that you perform changes in a clean topic branch rather than a master and that you create a pull request for them. This will facilitate discussion and revision.
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+Please be clean, keep your commits atomic and with the smallest possible logical change. This will increase the likelihood of your submission to be used.
 
+###Bug reports
 
+If you discover any bugs, feel free to create an issue on GitHub. Please add as much information as possible to help us fixing the possible bug.
+
+https://github.com/thiagokimo/bible_service/issues
+
+##License
+Copyright (c) 2012 Thiago Moreira Rocha.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to use, copy and modify copies of the Software, subject
+to the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 

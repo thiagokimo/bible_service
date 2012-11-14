@@ -1,6 +1,11 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 
+#models
+require './models/book'
+
+set :database, "sqlite3:///bible.db"
+
 get '/' do
-  "Hello World"
+  Book.all.to_json
 end

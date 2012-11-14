@@ -1,8 +1,7 @@
-class Createbooks < ActiveRecord::Migration
+class CreateBooks < ActiveRecord::Migration
   def up
     create_table :books do |t|
       t.string :title
-      t.string :link
       t.timestamps
     end
   end

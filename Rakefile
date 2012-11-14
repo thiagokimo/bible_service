@@ -1,6 +1,6 @@
 require "./app"
 require "sinatra/activerecord/rake"
-require './crawler/crawler'
+require './crawler'
 
 namespace :crawler do
   desc "Get and store collected books from web"

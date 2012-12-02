@@ -6,9 +6,9 @@ namespace :bible do
 	task :get_bible => :environment do
 
 		#Start URL
-		#url = "https://www.bible.com/bible/129/gen.1.nvi"
+		url = "https://www.bible.com/bible/129/gen.1.nvi"
 		flag = true;
-		url = "https://www.bible.com/bible/129/sng.8.13.nvi"
+		#url = "https://www.bible.com/bible/129/gen.4.nvi"
 
 		html = Nokogiri::HTML(open(url))
 
@@ -35,6 +35,7 @@ namespace :bible do
 			verses_area = main_info_area.css(".chapter .verse")
 
 			verses_area.each do |element|
+
 				verse = ""
 				verse_number = ""
 				
@@ -43,18 +44,31 @@ namespace :bible do
 
 					#remove foot notes
 					verse_number = element.css('.label').text.gsub(/\#/i, "")
-					
-					if verse.blank? == false && verse_number.blank? == false
-						puts verse_number << " " << verse
-						chapter.verses.find_or_create_by_content_and_number(verse, verse_number)
+
+					# when the verse number is blank, 
+					# the last verse is not over yet!
+					if verse_number.empty? && chapter.verses.size > 0
+						verse = chapter.verses.last.content << " " << verse
+						verse_number = chapter.verses.last.number
+
+						last_verse = chapter.verses.last
+
+						puts verse_number.to_s << " " << verse 
+						last_verse.number = verse_number
+						last_verse.content = verse.strip
+
+						last_verse.save!
+					else
+						puts verse_number.to_s << " " << verse 
+						chapter.verses.find_or_create_by_content_and_number(verse.strip, verse_number)
 					end
+
+					
 				end			
 			end
 
 			next_url = html.css('.nav_next').attr('href').value
 		end
-
-		
 	end
 
 	def first_time? flag

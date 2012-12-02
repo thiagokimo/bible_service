@@ -6,10 +6,10 @@ class Chapter < ActiveRecord::Base
   
   validates_presence_of :number#, :link
 
-  def as_json(options = {})
-    {
-      :number => self.number
-    }
-  end
-  
+  def as_json(options={})
+  { 
+  	:number => self.number,
+  	:verses => self.verses
+  }
+	end
 end

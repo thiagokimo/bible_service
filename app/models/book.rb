@@ -7,10 +7,10 @@ class Book < ActiveRecord::Base
 
   attr_accessible :name, :link
 
-  def as_json(options = {})
-    {
-      :name => self.name
-    }
-  end
-
+  def as_json(options={})
+  { 
+  	:name => self.name,
+  	:chapters => self.chapters
+  }
+	end
 end

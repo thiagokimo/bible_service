@@ -7,7 +7,7 @@ by Matt Graham
     filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
     opacity:0.6;
     position:fixed;
-    right:-52px;
+    right:-42px;
     top:50%;
     margin-top:-94px;
     z-index:450;
@@ -54,6 +54,12 @@ by Matt Graham
     -ms-transform:scale(1.1, 1.1);
     -o-transform:scale(1.1, 1.1);
     transform:scale(1.1, 1.1);
+  }
+
+  #locales ul { 
+    list-style: none;
+    padding:0; 
+    margin:10px; 
   }
 
 @font-face {

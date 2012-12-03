@@ -4,7 +4,7 @@
 
 #Description
 A RoR application that provides content from the bible. The content collected was the <b>Nova Versão Internacional</b> bible
-in brazilian portuguese. It was scrapped from <a>http://www.bibliaonline.com.br/</a>.
+in brazilian portuguese. It was scrapped from <a>http://www.bible.com/</a>.
 
 ##Setup
 
@@ -23,11 +23,9 @@ Assuming that you have Ruby, Rails and MySQL properly installed and configured i
   > `rake db:create`<br>
   > `rake db:migrate`
 
-4. <b>Run the crawler tasks to populate the databases</b>:
+4. <b>In order to populate the database, run the following task</b>:
   
-  > `rake bibliaonline:pega_livros`<br>
-  > `rake bibliaonline:pega_capitulos`<br>
-  > `rake bibliaonline:pega_versiculos`
+  > `rake bible:get_bible`<br>
 
 ##How it works
 There are 3 main entities:
@@ -37,7 +35,7 @@ There are 3 main entities:
 * Verse - Stores the verses' number and its content.
 
 The application has a crawler that populates the database parsing each html page, scrapping the content related to each
-entitie. All scrap processes were built as rake tasks and can be triggered anytime. More information in `lib/tasks/bibliaonline.rake`
+entitie. All scrap processes were built as rake tasks and can be triggered anytime. More information in `lib/tasks/bible.com.rake`
 
 The service exports the information as json by HTTP requests. All routes are nested as <i>Book</i>, <i>Chapter</i> and <i>Verse</i>
 respectively. The regular expressions to retrieve each entitie information corresponds to its own rake route:
@@ -54,7 +52,7 @@ Inside the project's folder, start the server with
 
 and try the following examples:
 
-* <b>All books:</b> - http://localhost:3000/books.json
+* <b>Whole bible:</b> - http://localhost:3000/books.json
 
 * <b> All chapters from the book Exodus</b> - http://localhost:3000/books/2/chapters.json
 
@@ -62,11 +60,10 @@ and try the following examples:
 
 ## Future ideas and "to do"s'
 
-1. Create tasks to collect information from other bibles  
-2. BibliaOnline.com has no consistency data. Find another source that has!
-3. Change from Rails to Sinatra because its lightier ;)
-4. Separate the crawler as a GEM, which will allow us to integrate our bible in other frameworks.
-5. Start writting the commit messages in English, LOL
+1. Create tasks to collect information from other bibles
+2. Change from Rails to Sinatra because its lightier ;)
+3. Separate the crawler as a GEM, which will allow us to integrate our bible in other frameworks.
+4. Start writting the commit messages in English, LOL
 
 ##How to contribute
 Please ensure that you provide appropriate test coverage and ensure the documentation is up-to-date. It is encouraged that you perform changes in a clean topic branch rather than a master and that you create a pull request for them. This will facilitate discussion and revision.

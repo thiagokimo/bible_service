@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Bible Service by thiagokimo</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+    <div id="locales">
+      <ul>
+        <li><a href="index.html"><img alt="EN" src="images/en.png" /></a></li>
+        <li><a href="index.pt-br.html"><img alt="PT" src="images/pt-br.png" /></a></li>
+      </ul>
+    </div>
+
+      <header>
+        <h1>Bible Service</h1>
+        <p>A simple bible content provider</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/thiagokimo/bible_service" class="button fork"><strong>Ver no GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/thiagokimo/bible_service/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/thiagokimo/bible_service/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+
+      <section>
+        <!-- <h1>Bible Service</h1> -->
+
+<h1><img src="http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2011/2/11/1297427584196/Bible-007.jpg" alt="pictureGallery" title="bible"></h1>
+
+<h1>Descrição</h1>
+
+<p>Esta aplicação, feita em Ruby, é um serviço que provê a <b>Nova Versão Internacional</b> da bíblia em português do Brasil. O conteúdo é coletado do site <a></a><a href="http://www.bible.com/">http://www.bible.com/</a>.</p>
+
+<h2>Configuração</h2>
+
+<p>Supondo que você tenha o Ruby, Rails e o MySQL instalado corretamente na sua máquina, execute os seguintes comandos:</p>
+
+<ol>
+<li>
+<p><b>Clone o repositório para um diretório do seu computador</b>:</p>
+
+<blockquote>
+<p><code>git clone https://github.com/thiagokimo/bible_service.git</code></p>
+</blockquote>
+</li>
+<li>
+<p><b>Dentro do diretório do projeto</b>:</p>
+
+<blockquote>
+<p><code>bundle install</code></p>
+</blockquote>
+</li>
+<li>
+<p><b>Crie o banco de dados e execute as migrações</b>:</p>
+
+<blockquote>
+<p><code>rake db:create</code><br><code>rake db:migrate</code></p>
+</blockquote>
+</li>
+<li>
+<p><b>Por fim, para coletar a bíblia execute a tarefa</b>:</p>
+
+<blockquote>
+<p><code>rake bible:get_bible</code><br></p>
+</blockquote>
+</li>
+</ol><h2>Como funciona</h2>
+
+<p>Existem 3 entidades principais no banco:</p>
+
+<ul>
+<li>Book - Possui o nome do livro e o link.</li>
+<li>Chapter - Possui o número do capítulo e o link.</li>
+<li>Verse - Possui o número do versículo e o seu conteúdo.</li>
+
+</ul><p>A aplicação possui um crawler que popula o banco de dados, coletando das páginas HTML as respectivas informações de cada entidade do banco. O crawler pode ser acionado qualquer vezes for necessário. Para mais detalhes sobre o processo da coleta, acesse <code>lib/tasks/bible.com.rake</code></p>
+
+<p>O serviço exporta as informações coletadas em arquivos no formato JSON, através de requisições HTTP. Para uma melhor visualização, as rotas para as requisições foram aninhadas na sequencia: <i>Book</i>, <i>Chapter</i> and <i>Verse</i>. Segue o padrão genérico das rotas:</p>
+
+<ul>
+<li>
+<b>Livros:</b> - "/books"</li>
+<li>
+<b>Capítulos:</b> - "books/<b><i>book_id</i></b>/chapters"</li>
+<li>
+<b>Versículos:</b> - "books/<b><i>book_id</i></b>/chapters/<b><i>chapter_id</i></b>/verses"</li>
+
+</ul><h2>Exemplos de uso</h2>
+
+<p>Para acessar as informações, acesse a URL que corresponde com a entidade do banco de dados do seu interesse. Dentro da pasta do projeto, inicie o servidor com o comando</p>
+
+<blockquote>
+<p><code>rails s</code><br></p>
+</blockquote>
+
+<p>e visualize o conteúdo coletado acessando a URL <code>http://localhost:3000</code>. Para consumir as informações de outras aplicações, siga o padrão genérico das rotas. Abaixo estão alguns exemplos: </p>
+
+<ul>
+<li><p><b>Bíblia completa:</b> - http://localhost:3000/books.json</p></li>
+<li><p><b> Todos os capítulos do livro de Êxodo</b> - http://localhost:3000/books/2/chapters.json</p></li>
+<li><p><b>Versículos do primeiro capítulo de Gênesis:</b> - http://localhost:3000/books/1/chapters/1/verses.json</p></li>
+</ul><h2>Idéias futuras e melhorias</h2>
+
+<ol>
+<li>Adaptar a aplicação para coletar todas versões de bíblia disponíveis!</li>
+<li>Migrar esta aplicação de Rails para Sinatra(porque é mais leve) ;)</li>
+<li>Usar SQLite3 ao invés de MySQL (porque também é mais leve)</li>
+<li>Separar o processo de coleta em uma GEM, pra facilitar ainda mais o uso da bíblia em outras aplicações</li>
+<li>Começar a escrever as mensagens de commit em inglês, senão menos pessoas irão entender, hehehehehe.</li>
+</ol><h2>Como contribuir</h2>
+
+<p>Se for contribuir, <b>TESTE</b> o código e <b>ATUALIZE</b> a documentação! É recomendado também que suas mudanças sejam feitas em uma branch que não seja a master e que você crie as <i>pull requests</i> dessas. Isso facilita as discussões e revisões de código.</p>
+
+<p>Por favor, simplifique os commits. Mudanças monstruosas podem nos deixar receosos a aceitar suas submissões.</p>
+
+<h3>Bugs</h3>
+
+<p>Se você encontrou algum erro, fique à vontade pra abrir um registro do mesmo no GitHub. Adicione o máximo de informações que conseguir. Isso nos ajudará nas correções.</p>
+
+<p><a href="https://github.com/thiagokimo/bible_service/issues">https://github.com/thiagokimo/bible_service/issues</a></p>
+
+<h2>Licença</h2>
+
+<p>Direitos Autorais (c) 2012 Thiago Moreira Rocha.</p>
+
+<p>A permissão é concedida, gratuitamente, para qualquer pessoa que obtenha
+uma cópia deste software e arquivos de documentação associados (o
+"Software"), para usar, copiar e modificar cópias do Software, de acordo
+com as seguintes condições:</p>
+
+<p>O aviso de direitos autorais acima e este aviso de permissão devem ser
+incluído em todas as cópias ou partes substanciais do Software.</p>
+
+<p>O SOFTWARE É FORNECIDO "COMO ESTÁ", SEM GARANTIA DE QUALQUER TIPO, EXPRESSA OU IMPLÍCITA, INCLUINDO, MAS SEM LIMITAÇÃO, AS GARANTIAS DE COMERCIALIZAÇÃO, ADEQUAÇÃO PARA UMA FINALIDADE ESPECÍFICA E LEGALIDADE. EM NENHUM CASO OS AUTORES OU DONOS DOS DIREITOS AUTORAIS SERÁ RESPONSÁVEL POR QUALQUER RECLAMAÇÃO, DANOS OU RESPONSABILIDADE, SEJA EM UMA AÇÃO DE CONTRATO, OU NÃO, DECORRENTES DE, OU EM CONEXÃO COM O SOFTWARE OU O USO OU OUTRAS NO SOFTWARE.</p>
+      </section>
+      <footer>
+        <p>Projeto mantido por <a href="https://github.com/thiagokimo">thiagokimo</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+  </body>
+</html>
